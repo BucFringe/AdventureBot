@@ -15,9 +15,12 @@ export async function PriestLoop(pre: Priest){
             console.log(`${pre.name} - should useMP Regen`)
             await GenMP(pre)
         }
-        await pre.smartMove("goo")
-        await HealSkillQueue(pre)
-
+        if (HealingList.length > 0){
+            await HealSkillQueue(pre)
+        } else {
+            if(pre.smartMoving) return;
+            await pre.smartMove("goo")
+        }
     },1000)
     
 }

@@ -1,42 +1,53 @@
-import { Character, EntitiesData, MonsterData, MonsterName, Tools } from "alclient";
+import { Character, EntitiesData, MonsterName, Tools } from "alclient";
 import { looting } from "./looting.js";
 
 export async function singleAttack(char: Character, mon: MonsterName){
     if(!char.ready) return;
     if(char.rip) return;
-    if (char.target){
-        // console.log(`${char.name} - has a target`)
+    if (char.getTargetEntity()){
+        console.log(`${char.name} - has a target`)
         try{
-            let target = char.getEntity({returnNearest: true, canWalkTo: true, type: mon})
-            if (Tools.distance(char, target) > char.range){
+            // let target = char.getEntity({returnNearest: true, canWalkTo: true, type: mon})
+            if (Tools.distance(char, char.getTargetEntity()) > char.range){
                 if(!char.moving){
-                    await char.smartMove(target)
+                    await char.smartMove(char.getTargetEntity())
                 }
             }
             if (char.isOnCooldown("attack")) return;
-            if (target) await char.basicAttack(target.id);
+            if (char.getTargetEntity()) await char.basicAttack(char.getTargetEntity().id);
         } catch (e){
             // console.log(e)
         }
     } else {
         console.log(`${char.name} - I dont have a target`)
-        const target = char.getEntity({ returnNearest: true, canWalkTo: true, type: mon})
-        // console.log (target)
-        if (Tools.distance(char, target) > char.range){
+        const targeted = char.getEntity({ returnNearest: true, type: mon})
+        if(!targeted){
             if(!char.smartMoving){
-                await char.smartMove(target)
+                await char.smartMove(mon)
             }
         } else {
-            // Should be in range
-            if (!target) return;
-            if (!char.isOnCooldown('attack')){
-                await char.basicAttack(target.id)
+            console.log (`${char.name} is targeting ${targeted.id}`)
+        if (Tools.distance(char, targeted) > char.range){
+                try{
+                    if(!char.smartMoving){
+                        await char.smartMove(targeted)
+                    }
+                } catch(e){
+                    console.log(`${char.name} move - ${e}`)
+                }
             } else {
-                console.log(`${char.name} - DAM Out of Reach`)
+                // Should be in range
+                if (!targeted) return;
+                if (!char.isOnCooldown('attack')){
+                    try{
+                        await char.basicAttack(targeted.id)
+                    } catch(e){
+                        console.log(`${char.name} attack - ${e}`)
+                    }
+                }   
             }
+            await looting(char);
         }
-        await looting(char);
-
     }
 }
 

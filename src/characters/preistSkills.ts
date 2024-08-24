@@ -1,6 +1,7 @@
-import { Character, Player, Priest } from "alclient";
+import { Character, Player, Priest, Tools } from "alclient";
 
-let HealingList: Character[] = []
+export let HealingList: Character[] = []
+
 
 export async function addHealRequest(char: Character){
     if(HealingList.includes(char)) return;
@@ -13,12 +14,19 @@ export async function HealSkillQueue(pre: Priest){
     if (!pre.isOnCooldown("heal")){
         // console.log(HealingList)
         let c: Character = HealingList[0]
-        console.log(`${pre.name} - Casting Heal on ${c.name}`)
-        try{
-            await pre.healSkill(c.id)
-            HealingList = HealingList.slice(1)
-        } catch(e){
-            console.log(e)
+        if (pre.range < Tools.distance(pre, c)){
+            console.log(`${pre.name} - Is too far away to csat Heal on ${c.name}`)
+            if (!pre.smartMoving){
+                pre.smartMove(c)
+            }
+        } else {
+            console.log(`${pre.name} - Casting Heal on ${c.name},${Tools.distance(pre, c)},${pre.G.skills.heal.range}`)
+            try{
+                await pre.healSkill(c.id)
+                HealingList = HealingList.slice(1)
+            } catch(e){
+                console.log(e)
+            }
         }
     }
 }

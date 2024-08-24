@@ -1,6 +1,7 @@
 import AL from "alclient"
 import { ReadConfig } from "./domain/configRead.js"
 import { login, startLoop } from "./utils/login.js"
+import { StartMonitoring } from "./monitoring.js"
 
 
 async function run() {
@@ -35,6 +36,8 @@ async function run() {
         let charFour = await login(config.characters[3], config.server)
         if(charFour) startLoop(config.characters[3], charFour)
     }
+
+    StartMonitoring()
 
 
     // // Log the characters into the game

@@ -36,6 +36,6 @@ export async function PartyCreateFull(main: Character, char1: Character, char2?:
             await char3.sendPartyInvite(main.id)
             await new Promise(resolve => setTimeout(resolve, 200));
         }
-        console.debug(main.partyData)
+        // console.debug(main.partyData)
     }
 }

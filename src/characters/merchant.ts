@@ -10,7 +10,7 @@ export async function MerchantLoop(mer: Merchant){
         if(!config) {
             process.exit()
         }
-        console.log(Game.characters)
+        // console.log(Game.characters)
 //         for(const char of config.characters){
 //             let party = mer.partyData
 //             console.log(party)
