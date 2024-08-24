@@ -1,0 +1,32 @@
+{
+    "server":{
+        "Area": "EU",
+        "des": "II"
+    },
+    "characters": [
+        {
+            "name": "Magio",
+            "type": "mage",
+            "monsterhunt": true,
+            "login": true
+        },
+        {
+            "name": "Ataki",
+            "type": "warrior",
+            "monsterhunt": true,
+            "login": true
+        },
+        {
+            "name": "Resanigi",
+            "type": "priest",
+            "monsterhunt": true,
+            "login": true
+        },
+        {
+            "name": "Vendi",
+            "type": "merchant",
+            "monsterhunt": false,
+            "login": true
+        }], 
+    "monsterList": ["goo"]
+}
