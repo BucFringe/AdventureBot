@@ -1,7 +1,4 @@
-import AL, { Mage } from "alclient"
-import { WarriorLoop } from "./characters/warrior.js"
-import { PriestLoop } from "./characters/preist.js"
-import { MageLoop } from "./characters/mage.js"
+import AL from "alclient"
 import { ReadConfig } from "./domain/configRead.js"
 import { login, startLoop } from "./utils/login.js"
 

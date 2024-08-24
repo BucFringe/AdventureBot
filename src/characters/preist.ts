@@ -1,4 +1,4 @@
-import { Priest, Game, Player } from "alclient";
+import { Priest } from "alclient";
 import { GenMP } from "../utils/pots.js";
 import { HealSkillQueue } from "./preistSkills.js";
 import { MonsterHunt } from "../utils/looting.js";
