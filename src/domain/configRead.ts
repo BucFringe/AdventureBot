@@ -2,7 +2,7 @@ import fs from "fs"
 import { Config } from "./configInterface.js";
 
 
-const configPath = 'C:/Users/Elliott/Documents/coding/home/AdventureBot/src/config.json'
+const configPath = './src/config.json'
 
 export function ReadConfig(){
     try {

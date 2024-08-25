@@ -8,6 +8,10 @@ let HealingList= []
 
 export async function PriestLoop(pre: Priest){
     
+    setInterval(() => {
+        CharacterMonitoring(pre)
+    }, 500);
+
     setInterval(async () => {
         if (pre.rip) Revive(pre);
         await MonsterHunt(pre)
