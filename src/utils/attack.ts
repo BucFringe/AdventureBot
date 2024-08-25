@@ -5,7 +5,7 @@ export async function singleAttack(char: Character, mon: MonsterName){
     if(!char.ready) return;
     if(char.rip) return;
     if (char.getTargetEntity()){
-        console.log(`${char.name} - has a target`)
+        // console.log(`${char.name} - has a target`)
         try{
             // let target = char.getEntity({returnNearest: true, canWalkTo: true, type: mon})
             if (Tools.distance(char, char.getTargetEntity()) > char.range){
@@ -19,14 +19,14 @@ export async function singleAttack(char: Character, mon: MonsterName){
             // console.log(e)
         }
     } else {
-        console.log(`${char.name} - I dont have a target`)
+        // console.log(`${char.name} - I dont have a target`)
         const targeted = char.getEntity({ returnNearest: true, type: mon})
         if(!targeted){
             if(!char.smartMoving){
                 await char.smartMove(mon)
             }
         } else {
-            console.log (`${char.name} is targeting ${targeted.id}`)
+            // console.log (`${char.name} is targeting ${targeted.id}`)
         if (Tools.distance(char, targeted) > char.range){
                 try{
                     if(!char.smartMoving){
