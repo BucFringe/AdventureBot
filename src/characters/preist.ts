@@ -4,10 +4,13 @@ import { HealSkillQueue } from "./preistSkills.js";
 import { MonsterHunt, SendMoney } from "../utils/looting.js";
 import { Revive } from "../utils/healing.js";
 import { CharacterMonitoring } from "../monitoring.js";
+import { PartyInviteRequest } from "../utils/party.js";
+import { singleAttack } from "../utils/attack.js";
 
 let HealingList= []
 
 export async function PriestLoop(pre: Priest){
+    PartyInviteRequest(pre);
     
     setInterval(() => {
         CharacterMonitoring(pre)
@@ -15,7 +18,7 @@ export async function PriestLoop(pre: Priest){
 
     setInterval(async () =>{
         console.log(pre.slots)
-        // await SendMoney(pre)
+        await SendMoney(pre)
     }, 100000)
 
     setInterval(async () => {
@@ -31,6 +34,7 @@ export async function PriestLoop(pre: Priest){
             if(pre.smartMoving) return;
             await pre.smartMove("goo")
         }
-    },1000)
+        singleAttack(pre, "goo")
+    },250)
     
 }

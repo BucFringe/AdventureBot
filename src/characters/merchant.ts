@@ -3,6 +3,7 @@ import { Revive } from "../utils/healing.js";
 import { CharacterConfig } from "../domain/configInterface.js";
 import { ReadConfig } from "../domain/configRead.js";
 import { CharacterMonitoring } from "../monitoring.js";
+import { CreateParty } from "../utils/party.js";
 
 
 export async function MerchantLoop(mer: Merchant){
@@ -13,15 +14,12 @@ export async function MerchantLoop(mer: Merchant){
         }
         setInterval(() => {
             CharacterMonitoring(mer)
+            CreateParty(mer)
+            // console.log(mer.partyData)
         }, 500);
-        // console.log(Game.characters)
-//         for(const char of config.characters){
-//             let party = mer.partyData
-//             console.log(party)
-//             console.log(`Sending the Invites out`)
-//             await mer.sendPartyInvite(char.name)
-//             console.log(`Sent party Invite to ${char.name}`)
-//             await new Promise(resolve => setTimeout(resolve, 5000));
-//         }
-//         console.log(Game.characters)
+        setInterval(async () => {
+            if(!mer.smartMoving){
+                mer.smartMove('goo')
+            }
+        },10000)
 }

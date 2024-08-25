@@ -22,6 +22,7 @@ async function run() {
             startLoop(config.characters[0],charOne)
         }
     }
+    await sleep(600)
     if(config.characters[1]){
         let chartwo = await login(config.characters[1],config.server)
         if(chartwo) {
@@ -63,5 +64,8 @@ async function run() {
 
 }
 
+async function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 run()

@@ -5,6 +5,12 @@
     },
     "characters": [
         {
+            "name": "Vendi",
+            "type": "merchant",
+            "monsterhunt": false,
+            "login": true
+        },
+        {
             "name": "Magio",
             "type": "mage",
             "monsterhunt": true,
@@ -20,12 +26,6 @@
             "name": "Resanigi",
             "type": "priest",
             "monsterhunt": true,
-            "login": true
-        },
-        {
-            "name": "Vendi",
-            "type": "merchant",
-            "monsterhunt": false,
             "login": true
         }], 
     "monsterList": ["goo"]

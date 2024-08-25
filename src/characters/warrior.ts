@@ -5,15 +5,17 @@ import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
 import { Revive } from "../utils/healing.js";
 import { CharacterMonitoring } from "../monitoring.js";
+import { PartyInviteRequest } from "../utils/party.js";
 
 
 
 export async function WarriorLoop(war: Warrior){
     let startingGold = war.gold
+    PartyInviteRequest(war);
 
     setInterval(async () =>{
         console.log(war.slots)
-        // await SendMoney(war)
+        await SendMoney(war)
     }, 100000)
 
     setInterval(() => {

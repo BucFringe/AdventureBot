@@ -5,11 +5,13 @@ import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
 import { Revive } from "../utils/healing.js";
 import { CharacterMonitoring } from "../monitoring.js";
+import { PartyInviteRequest } from "../utils/party.js";
 
 
 
 export async function MageLoop(mag: Mage){
     let startingGold = mag.gold
+    PartyInviteRequest(mag);
 
     setInterval(() => {
         CharacterMonitoring(mag)
@@ -17,7 +19,7 @@ export async function MageLoop(mag: Mage){
 
     setInterval(async () =>{
         console.log(mag.slots)
-        // await SendMoney(mag)
+        await SendMoney(mag)
     }, 100000)
 
     setInterval(async () => {

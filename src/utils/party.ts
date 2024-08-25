@@ -8,6 +8,23 @@ import { Character } from "alclient";
     
 // }
 
+export let PartyList: Character[] = []
+
+export async function PartyInviteRequest(char: Character){
+    if(char.party) return
+    console.log(`INFO - Adding ${char.name} to the party list`)
+    if(PartyList.includes(char)) return
+    await char.sendPartyRequest('Vendi')
+    PartyList.push(char);
+}
+
+export async function CreateParty(char: Character){
+    if(PartyList.length > 0){
+        console.log(`${char.name} - Adding ${PartyList[0]} to the party`)
+        await char.acceptPartyRequest(PartyList[0].id)
+        PartyList = PartyList.slice(1)
+    }
+}
 
 export async function PartyCreateFull(main: Character, char1: Character, char2?:Character, char3?:Character){
     if (!main.party){
