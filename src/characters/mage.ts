@@ -17,7 +17,7 @@ export async function MageLoop(mag: Mage){
 
     setInterval(async () =>{
         console.log(mag.slots)
-        await SendMoney(mag)
+        // await SendMoney(mag)
     }, 100000)
 
     setInterval(async () => {

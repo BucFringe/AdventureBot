@@ -13,7 +13,7 @@ export async function WarriorLoop(war: Warrior){
 
     setInterval(async () =>{
         console.log(war.slots)
-        await SendMoney(war)
+        // await SendMoney(war)
     }, 100000)
 
     setInterval(() => {

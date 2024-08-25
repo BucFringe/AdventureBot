@@ -15,7 +15,7 @@ export async function PriestLoop(pre: Priest){
 
     setInterval(async () =>{
         console.log(pre.slots)
-        await SendMoney(pre)
+        // await SendMoney(pre)
     }, 100000)
 
     setInterval(async () => {
