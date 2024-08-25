@@ -22,7 +22,7 @@ export async function looting(char: Character){
 export async function SendMoney(char: Character){
 	if (char.gold > 50000){
 		console.log(`${char.name} - Sending gold to Merchant`)
-		await char.sendGold('Vendi', char.gold)
+		//await char.sendGold('Vendi', char.gold)
 	}
 }
 

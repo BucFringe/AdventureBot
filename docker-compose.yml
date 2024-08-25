@@ -1,7 +1,7 @@
 version: '3'
 services:
   albot:
-    image: albot:1
+    image: albot:1.1
     ports:
       - 3000:3000
     restart: unless-stopped
