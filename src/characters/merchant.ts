@@ -2,6 +2,7 @@ import { Game, Merchant } from "alclient";
 import { Revive } from "../utils/healing.js";
 import { CharacterConfig } from "../domain/configInterface.js";
 import { ReadConfig } from "../domain/configRead.js";
+import { CharacterMonitoring } from "../monitoring.js";
 
 
 export async function MerchantLoop(mer: Merchant){
@@ -10,6 +11,9 @@ export async function MerchantLoop(mer: Merchant){
         if(!config) {
             process.exit()
         }
+        setInterval(() => {
+            CharacterMonitoring(mer)
+        }, 500);
         // console.log(Game.characters)
 //         for(const char of config.characters){
 //             let party = mer.partyData

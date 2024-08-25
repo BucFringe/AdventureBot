@@ -49,7 +49,7 @@ export async function StartMonitoring(){
 
 
 export function CharacterMonitoring(char : Character) {
-    console.log(`${char.name} is sending metrics`)
+    // console.log(`${char.name} is sending metrics`)
     gold.labels(char.name, char.ctype).set(char.gold)
     goldpm.labels(char.name, char.ctype).set(char.goldm)
     exp.labels(char.name, char.ctype).set(char.xp)

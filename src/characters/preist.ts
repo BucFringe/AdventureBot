@@ -3,6 +3,7 @@ import { GenMP } from "../utils/pots.js";
 import { HealSkillQueue } from "./preistSkills.js";
 import { MonsterHunt } from "../utils/looting.js";
 import { Revive } from "../utils/healing.js";
+import { CharacterMonitoring } from "../monitoring.js";
 
 let HealingList= []
 
@@ -11,6 +12,10 @@ export async function PriestLoop(pre: Priest){
     setInterval(() => {
         CharacterMonitoring(pre)
     }, 500);
+
+    setInterval(async () =>{
+        console.log(pre.slots)
+    }, 10000)
 
     setInterval(async () => {
         if (pre.rip) Revive(pre);
