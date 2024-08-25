@@ -19,6 +19,7 @@ export async function MerchantLoop(mer: Merchant){
         }, 500);
         setInterval(async () => {
             if(!mer.smartMoving){
+                console.log('moving to goo')
                 mer.smartMove('goo')
             }
         },10000)
