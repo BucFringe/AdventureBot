@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc && node ./output/main.js"
+    "build": "npx tsc && node ./output/main.js",
+    "dbuild": "sudo docker build . -t albot:1 && sudo docker compose up -d"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,5 @@
 import { Mage, MonsterData} from "alclient";
-import { looting, MonsterHunt } from "../utils/looting.js";
+import { looting, MonsterHunt, SendMoney } from "../utils/looting.js";
 import { GenHP, GenMP } from "../utils/pots.js";
 import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
@@ -14,6 +14,11 @@ export async function MageLoop(mag: Mage){
     setInterval(() => {
         CharacterMonitoring(mag)
     }, 500);
+
+    setInterval(async () =>{
+        console.log(mag.slots)
+        await SendMoney(mag)
+    }, 100000)
 
     setInterval(async () => {
         //logging mana / hp

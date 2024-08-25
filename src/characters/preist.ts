@@ -1,7 +1,7 @@
 import { Priest } from "alclient";
 import { GenMP } from "../utils/pots.js";
 import { HealSkillQueue } from "./preistSkills.js";
-import { MonsterHunt } from "../utils/looting.js";
+import { MonsterHunt, SendMoney } from "../utils/looting.js";
 import { Revive } from "../utils/healing.js";
 import { CharacterMonitoring } from "../monitoring.js";
 
@@ -15,7 +15,8 @@ export async function PriestLoop(pre: Priest){
 
     setInterval(async () =>{
         console.log(pre.slots)
-    }, 10000)
+        await SendMoney(pre)
+    }, 100000)
 
     setInterval(async () => {
         if (pre.rip) Revive(pre);

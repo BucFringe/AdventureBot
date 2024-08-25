@@ -1,5 +1,5 @@
 import { Warrior } from "alclient";
-import { looting, MonsterHunt } from "../utils/looting.js";
+import { looting, MonsterHunt, SendMoney } from "../utils/looting.js";
 import { GenHP, GenMP } from "../utils/pots.js";
 import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
@@ -10,6 +10,11 @@ import { CharacterMonitoring } from "../monitoring.js";
 
 export async function WarriorLoop(war: Warrior){
     let startingGold = war.gold
+
+    setInterval(async () =>{
+        console.log(war.slots)
+        await SendMoney(war)
+    }, 100000)
 
     setInterval(() => {
         CharacterMonitoring(war)
