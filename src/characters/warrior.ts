@@ -4,7 +4,7 @@ import { GenHP, GenMP } from "../utils/pots.js";
 import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
 import { Revive } from "../utils/healing.js";
-import { CharacterMonitoring } from "../monitoring.js";
+import { CharacterMonitoring, EquipMonitoring } from "../monitoring.js";
 import { PartyInviteRequest } from "../utils/party.js";
 
 
@@ -27,6 +27,7 @@ export async function WarriorLoop(war: Warrior){
         let gainedGold = war.gold - startingGold
         console.log(`${war.name} - hp ${war.hp}/${war.max_hp} - mp ${war.mp}/${war.max_mp} - gold Gained ${gainedGold} - XP/m ${war.xpm}`)
         console.log(`${war.name} - Monster hunt ${war.s.monsterhunt?.id}`) 
+        EquipMonitoring(war)
     },30000)
 
     setInterval(async () => {

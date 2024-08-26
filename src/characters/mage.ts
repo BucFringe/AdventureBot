@@ -4,7 +4,7 @@ import { GenHP, GenMP } from "../utils/pots.js";
 import { singleAttack } from "../utils/attack.js";
 import { addHealRequest } from "./preistSkills.js";
 import { Revive } from "../utils/healing.js";
-import { CharacterMonitoring } from "../monitoring.js";
+import { CharacterMonitoring, EquipMonitoring } from "../monitoring.js";
 import { PartyInviteRequest } from "../utils/party.js";
 
 
@@ -18,7 +18,7 @@ export async function MageLoop(mag: Mage){
     }, 500);
 
     setInterval(async () =>{
-        console.log(mag.slots)
+        // console.log(mag.slots)
         await SendMoney(mag)
     }, 100000)
 
@@ -27,6 +27,7 @@ export async function MageLoop(mag: Mage){
         let gainedGold = mag.gold - startingGold
         console.log(`${mag.name} - hp ${mag.hp}/${mag.max_hp} - mp ${mag.mp}/${mag.max_mp} - gold Gained ${gainedGold} - XP/m ${mag.xpm}`)
         console.log(`${mag.name} - Monster hunt ${mag.s.monsterhunt?.id}`) 
+        EquipMonitoring(mag)
         try{
             // if(!mag.party) await mag.acceptPartyInvite(`Vendi`)
         } catch(e){

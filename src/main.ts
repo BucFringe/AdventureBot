@@ -2,6 +2,7 @@ import AL from "alclient"
 import { ReadConfig } from "./domain/configRead.js"
 import { login, startLoop } from "./utils/login.js"
 import { StartMonitoring } from "./monitoring.js"
+import { sendDiscordAlert } from "./alerts.js"
 
 
 async function run() {
@@ -19,6 +20,7 @@ async function run() {
         let charOne = await login(config.characters[0],config.server)
         // we would now start the merchant loop
         if(charOne) {
+            await sendDiscordAlert(`${charOne.name} - Logged In`)
             startLoop(config.characters[0],charOne)
         }
     }
@@ -26,16 +28,23 @@ async function run() {
     if(config.characters[1]){
         let chartwo = await login(config.characters[1],config.server)
         if(chartwo) {
+            await sendDiscordAlert(`${chartwo.name} - Logged In`)
             startLoop(config.characters[1],chartwo)
         }
     }
     if(config.characters[2]){
         let charthree= await login(config.characters[2],config.server)
-        if(charthree) startLoop(config.characters[2],charthree)
+        if(charthree){
+            await sendDiscordAlert(`${charthree.name} - Logged In`)
+            startLoop(config.characters[2],charthree)
+        } 
     }
     if(config.characters[3]){
         let charFour = await login(config.characters[3], config.server)
-        if(charFour) startLoop(config.characters[3], charFour)
+        if(charFour){
+            await sendDiscordAlert(`${charFour.name} - Logged In`)
+            startLoop(config.characters[2],charFour)
+        }
     }
 
     StartMonitoring()
